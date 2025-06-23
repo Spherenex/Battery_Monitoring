@@ -1,0 +1,270 @@
+/* App.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+  background-image: linear-gradient(to bottom right, #f0f4f8, #e2e8f0);
+  min-height: 100vh;
+}
+
+.dashboard {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.dashboard-header h1 {
+  color: #2c3e50;
+  font-size: 28px;
+  background: linear-gradient(to right, #3498db, #2c3e50);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.last-update {
+  color: #fff;
+  font-size: 14px;
+  background: linear-gradient(to right, #3498db, #2980b9);
+  padding: 8px 15px;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(41, 128, 185, 0.2);
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.metrics-row, .graphs-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.metric-card {
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+}
+
+/* Battery percentage card gradient */
+.metric-card:nth-child(1)::before {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+}
+
+/* Current card gradient */
+.metric-card:nth-child(2)::before {
+  background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+/* Power card gradient */
+.metric-card:nth-child(3)::before {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+/* Voltage card gradient */
+.metric-card:nth-child(4)::before {
+  background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+}
+
+.graph-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+  padding: 25px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+.graph-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #3498db, #2ecc71, #f1c40f, #e74c3c);
+}
+
+/* Battery percentage graph accent */
+.graph-card:nth-child(1)::after {
+  background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+}
+
+/* Current graph accent */
+.graph-card:nth-child(2)::after {
+  background: linear-gradient(90deg, #a1c4fd, #c2e9fb);
+}
+
+/* Power graph accent */
+.graph-card:nth-child(3)::after {
+  background: linear-gradient(90deg, #ffecd2, #fcb69f);
+}
+
+/* Voltage graph accent */
+.graph-card:nth-child(4)::after {
+  background: linear-gradient(90deg, #84fab0, #8fd3f4);
+}
+
+.metric-card:hover, .graph-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.metric-title {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.graph-title {
+  font-size: 16px;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-weight: 600;
+  position: relative;
+  padding-left: 12px;
+}
+
+.graph-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: #3498db;
+  border-radius: 2px;
+}
+
+.metric-value {
+  font-size: 42px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.battery-visual {
+  height: 15px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 15px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.battery-level {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1s ease, background-color 1s ease;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.graph-container {
+  height: 220px;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Custom tooltip styles for the chart */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background-color: rgba(44, 62, 80, 0.9) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 10px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(5px);
+}
+
+.recharts-tooltip-wrapper .recharts-default-tooltip .recharts-tooltip-label {
+  color: #ecf0f1 !important;
+  margin-bottom: 5px !important;
+}
+
+.recharts-tooltip-wrapper .recharts-default-tooltip .recharts-tooltip-item {
+  color: white !important;
+}
+
+/* Styled axis lines */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(0, 0, 0, 0.05);
+}
+
+.recharts-cartesian-axis-line {
+  stroke: rgba(0, 0, 0, 0.1);
+  stroke-width: 2;
+}
+
+/* Animate points in chart */
+.recharts-line-curve {
+  animation: lineGrow 1.5s ease-out forwards;
+}
+
+@keyframes lineGrow {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .metrics-row, .graphs-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .metric-value {
+    font-size: 36px;
+  }
+}
